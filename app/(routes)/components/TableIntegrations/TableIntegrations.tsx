@@ -28,8 +28,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import { Progress } from "@/components/ui/progress";
+
 import { formatPrice } from "@/lib/formatPrice";
+
 import { TableIntegrationsProps } from "./TableIntegrations.types";
 
 const data: TableIntegrationsProps[] = [
