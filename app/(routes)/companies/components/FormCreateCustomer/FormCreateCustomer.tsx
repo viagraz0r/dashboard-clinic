@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { z } from 'zod';
+import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -27,28 +28,30 @@ import {
 } from '@/components/ui/select';
 import { UploadButton } from '@/utils/uploadthing';
 import { toast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-	name: z.string(),
-	country: z.string().min(2),
-	website: z.string().min(2),
+	nombre: z.string().min(3),
+	cedula: z.string().min(8),
 	phone: z.string().min(11),
-	ci: z.string().min(8),
+	website: z.string().min(6),
+	country: z.string().min(3),
 	profileImage: z.string(),
 });
 
 export function FormCreateCustomer(props: FormCreateCustomerProps) {
 	const { setOpenModalCreate } = props;
+	const router = useRouter();
 	const [photoUploaded, setPhotouploaded] = useState(false);
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			name: '',
-			country: '',
-			website: '',
+			nombre: '',
+			cedula: '',
 			phone: '',
-			ci: '',
+			website: '',
+			country: '',
 			profileImage: '',
 		},
 	});
@@ -56,7 +59,17 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 	const { isValid } = form.formState;
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		console.log(values);
+		try {
+			axios.post('/api/customers', values);
+			toast({ title: 'Paciente creado exitosamente' });
+			router.refresh();
+			setOpenModalCreate(false);
+		} catch (error) {
+			toast({
+				title: 'Algo salio mal',
+				variant: 'destructive',
+			});
+		}
 	};
 
 	return (
@@ -66,44 +79,24 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 					<div className="grid grid-cols-2 gap-3">
 						<FormField
 							control={form.control}
-							name="name"
+							name="nombre"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Company name</FormLabel>
+									<FormLabel>Nombre del paciente</FormLabel>
 									<FormControl>
-										<Input placeholder="Name of company here..." type="text" {...field} />
+										<Input placeholder="Nombre del paciente aqui..." type="text" {...field} />
 									</FormControl>
 								</FormItem>
 							)}
 						/>
 						<FormField
 							control={form.control}
-							name="country"
+							name="cedula"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Country</FormLabel>
-									<Select onValueChange={field.onChange} defaultValue={field.value}>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select the country" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value="united-kingdom">United Kingdom</SelectItem>
-											<SelectItem value="spain">Spain</SelectItem>
-										</SelectContent>
-									</Select>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="website"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Website</FormLabel>
+									<FormLabel>Cedula</FormLabel>
 									<FormControl>
-										<Input placeholder="http://hostname.com" type="text" {...field} />
+										<Input placeholder="Numero de cedula aqui..." type="text" {...field} />
 									</FormControl>
 								</FormItem>
 							)}
@@ -113,22 +106,46 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 							name="phone"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Phone</FormLabel>
+									<FormLabel>Telefono</FormLabel>
 									<FormControl>
-										<Input placeholder="04XX-XXXXXXX" type="number" {...field} />
+										<Input placeholder="04XX-XXXXXXX" type="text" {...field} />
 									</FormControl>
 								</FormItem>
 							)}
 						/>
 						<FormField
 							control={form.control}
-							name="ci"
+							name="website"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>CI</FormLabel>
+									<FormLabel>Pagina Web</FormLabel>
 									<FormControl>
-										<Input placeholder="Cedula here..." type="number" {...field} />
+										<Input placeholder="https://hostname.com" type="text" {...field} />
 									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="country"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Pais</FormLabel>
+									<Select onValueChange={field.onChange} defaultValue={field.value}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Seleccione el pais" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											<SelectItem value="united-kingdom">Reino Unido</SelectItem>
+											<SelectItem value="spain">España</SelectItem>
+											<SelectItem value="brazil">Brasil</SelectItem>
+											<SelectItem value="venezuela">Venezuela</SelectItem>
+											<SelectItem value="argentina">Argentina</SelectItem>
+											<SelectItem value="Peru">Peru</SelectItem>
+										</SelectContent>
+									</Select>
 								</FormItem>
 							)}
 						/>

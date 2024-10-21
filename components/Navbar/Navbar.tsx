@@ -26,7 +26,7 @@ export function Navbar() {
 			</div>
 			<div className="flex gap-x-2 items-center">
 				<ToggleTheme />
-				<UserButton />
+				<UserButton afterSignOutUrl="/sign-in" />
 			</div>
 		</nav>
 	);
