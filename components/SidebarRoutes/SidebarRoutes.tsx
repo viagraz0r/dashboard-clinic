@@ -17,28 +17,28 @@ export function SidebarRoutes() {
 						<SidebarItem key={item.label} item={item} />
 					))}
 				</div>
-				<Separator />
+				{/* <Separator /> */}
 
 				<div className="p-2 md:p-6">
-					<p className="text-slate-500 mb-2">TOOLS</p>
+					{/* <p className="text-slate-500 mb-2">TOOLS</p>
 					{dataToolsSidebar.map((item) => (
 						<SidebarItem key={item.label} item={item} />
-					))}
+					))} */}
 				</div>
-				<Separator />
+				{/* <Separator /> */}
 
 				<div className="p-2 md:p-6">
-					<p className="text-slate-500 mb-2">SUPPORT</p>
+					{/* <p className="text-slate-500 mb-2">SUPPORT</p>
 					{dataSupportSidebar.map((item) => (
 						<SidebarItem key={item.label} item={item} />
-					))}
+					))} */}
 				</div>
 			</div>
 			<div>
 				<div className="text-center p-6">
-					<Button variant="outline" className="w-full">
+					{/* <Button variant="outline" className="w-full">
 						Upgrade Plan
-					</Button>
+					</Button> */}
 				</div>
 				<Separator />
 				<footer className="mt-3 p-3  text-center">2024. All rights reserved zorCode.com</footer>

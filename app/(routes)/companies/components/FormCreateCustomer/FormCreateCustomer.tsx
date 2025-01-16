@@ -183,7 +183,7 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 						/>
 					</div>
 					<Button type="submit" disabled={!isValid}>
-						Submit
+						Guardar
 					</Button>
 				</form>
 			</Form>

@@ -19,11 +19,11 @@ export const dataGeneralSidebar = [
 		label: 'Companies',
 		href: '/companies',
 	},
-	{
-		icon: Calendar,
-		label: 'Calendar',
-		href: '/task',
-	},
+	// {
+	// 	icon: Calendar,
+	// 	label: 'Calendar',
+	// 	href: '/task',
+	// },
 ];
 
 export const dataToolsSidebar = [

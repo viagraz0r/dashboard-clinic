@@ -1,10 +1,10 @@
-import { HeaderCompanies } from "./components/HeaderCompanies";
+import { HeaderCompanies } from './components/HeaderCompanies';
 
 export default function Companies() {
-  return (
-    <div>
-      <HeaderCompanies />
-      <div>Companies</div>
-    </div>
-  );
+	return (
+		<div>
+			<HeaderCompanies />
+			<div>Pacientes</div>
+		</div>
+	);
 }
