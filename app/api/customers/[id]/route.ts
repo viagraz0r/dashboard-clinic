@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { conn } from '@/lib/db';
+import { auth } from '@clerk/nextjs';
 
 export async function GET(request: any, { params }: any) {
 	try {
