@@ -1,7 +1,7 @@
 import { authMiddleware } from '@clerk/nextjs';
 export default authMiddleware({
 	publicRoutes: ['/api/uploadthing'],
-	//ignoredRoutes: ['/api/uploadthing'],
+	//ignoredRoutes: ['/api/patients'],
 });
 export const config = {
 	matcher: [

@@ -5,11 +5,11 @@ import { NextResponse } from 'next/server';
 export async function GET() {
 	try {
 		const { userId } = auth();
-		const results = await conn.query(' SELECT * FROM patients');
+		const patients = await conn.query(' SELECT * FROM patients');
 		if (!userId) {
 			return new NextResponse('Unathorized', { status: 401 });
 		}
-		return NextResponse.json(results);
+		return NextResponse.json(patients);
 	} catch (error: any) {
 		return NextResponse.json(
 			{

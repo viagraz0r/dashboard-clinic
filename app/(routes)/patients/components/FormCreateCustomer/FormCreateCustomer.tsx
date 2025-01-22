@@ -60,7 +60,7 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			axios.post('/api/customers', values);
+			axios.post('/api/patients', values);
 			toast({ title: 'Paciente creado exitosamente' });
 			router.refresh();
 			setOpenModalCreate(false);

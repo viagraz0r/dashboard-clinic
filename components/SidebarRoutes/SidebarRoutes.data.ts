@@ -6,6 +6,7 @@ import {
 	ShieldCheck,
 	CircleHelpIcon,
 	Calendar,
+	User2,
 } from 'lucide-react';
 
 export const dataGeneralSidebar = [
@@ -15,9 +16,9 @@ export const dataGeneralSidebar = [
 		href: '/',
 	},
 	{
-		icon: Building2,
-		label: 'Companies',
-		href: '/companies',
+		icon: User2,
+		label: 'Pacientes',
+		href: '/patients',
 	},
 	// {
 	// 	icon: Calendar,
