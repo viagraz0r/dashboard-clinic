@@ -7,7 +7,7 @@ import { DataTable } from './data-table';
 import { Patients, columns } from './columns';
 
 async function loadPatients(): Promise<Patients[]> {
-	const result: Patients[] = await conn.query('SELECT * FROM patients ORDER BY CREATED DESC');
+	const result: Patients[] = await conn.query('SELECT * FROM patients ORDER BY CREATED desc');
 	return result.map((row) => ({
 		ID: row.ID,
 		NOMBRE: row.NOMBRE,
@@ -30,10 +30,7 @@ export async function ListCompanies() {
 	if (!userId) {
 		return redirect('/');
 	}
-
 	const patients = await loadPatients();
-
-	console.log(patients);
 
 	return <DataTable columns={columns} data={patients} />;
 }

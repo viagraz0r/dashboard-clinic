@@ -4,6 +4,7 @@ import { ArrowUpDown, MoreHorizontal, Pencil } from 'lucide-react';
 
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
+import { Patients } from '../../[patientId]/components/PatientForm/PatientForm.types';
 
 import {
 	DropdownMenu,
@@ -17,17 +18,6 @@ import {
 import Link from 'next/link';
 
 import Image from 'next/image';
-
-export type Patients = {
-	ID: number;
-	NOMBRE: string;
-	CEDULA: string;
-	PHONE: string;
-	WEBSITE: string;
-	COUNTRY: string;
-	PROFILEIMAGE: any;
-	CREATED: any;
-};
 
 export const columns: ColumnDef<Patients>[] = [
 	{
@@ -96,7 +86,7 @@ export const columns: ColumnDef<Patients>[] = [
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
-						<Link href={'/patient/${ID}'}>
+						<Link href={`/patients/${ID}`}>
 							<DropdownMenuItem>
 								<Pencil className="w-4 h-4 mr-2" />
 								Editar
